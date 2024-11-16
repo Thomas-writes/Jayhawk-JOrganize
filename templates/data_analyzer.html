@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <Title>
+            Data Analyzer
+        </Title>
+    </head>
+    <Body>
+        <div>
+            <h1>
+                Data Analyzer
+            </h1>
+            <label>Website:</label>
+            <input placeholder="www.website.com" type="text" id="URL" name="URL">
+            <button type="button">Submit</button>
+            <script>
+                document.getElementById('submitButton').addEventListener('click', () => {
+                    const inputField = document.getElementById('inputValue');
+                    const URL = inputField.value;
+                    if (URL.trim() === "") {
+                        // Send the value to Flask
+                        alert("No value has been entered")
+                    } else {
+                        fetch('/store', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ value: URL }),
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                // Clear the input field after successful submission
+                                inputField.value = '';
+                                alert("Value submitted successfully!");
+                            } else {
+                                alert("Error submitting value.");
+                            }
+                        });
+                    }
+                });
+            <div>
+                <h4>Table 1</h4>
+                <h4>Table 2</h4>
+                <h4>Table 3</h4>
+            </div>
+        </div>
+    </Body>
+</html>
