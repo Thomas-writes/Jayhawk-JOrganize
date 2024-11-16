@@ -12,8 +12,9 @@ def main():
 def store():
     data = request.get_json()
     URL = data.get('value')
+    URL = '"' +  URL + '"'
     print(URL)
-    return None
+    return jsonify("message: URL")
 
 
 if __name__ == '__main__':

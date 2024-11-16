@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <Title>
-            Data Analyzer
-        </Title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Data Analyzer</title>
     </head>
-    <Body>
+    <body style="background-color:powderblue;">
         <div>
-            <h1>
-                Data Analyzer
-            </h1>
-            <label for="URL">Website:</label>
-            <input placeholder="www.website.com" type="text" id="URL" name="URL">
-            <button id="submitButton" type="button">Submit</button>
+            <h1 class="title">Data Analyzer</h1>
+            <div class="input">
+                <label class = "website" for="URL">Website:</label>
+                <input placeholder="www.website.com" type="text" id="URL" name="URL">
+                <button class="button" height=100% width=2*height id="submitButton" type="button">Submit</button>
+            </div>
             <script>
                 document.getElementById('submitButton').addEventListener('click', () => {
                     const inputField = document.getElementById('URL');
                     const URL = inputField.value;
                     if (URL.trim() === "") {
-                        // Send the value to Flask
-                        alert("No value has been entered")
+                        alert("No value has been entered");
                     } else {
                         fetch('/store', {
                             method: 'POST',
@@ -30,21 +28,35 @@
                         })
                         .then(response => {
                             if (response.ok) {
-                                // Clear the input field after successful submission using JSON
-                                inputField.value = '';
-                                alert("Value submitted successfully!");
+                                inputField.value = ''; 
+                                // Clear the input after submission
                             } else {
-                                alert("Error submitting value.");
+                                alert("Error submitting value");
                             }
                         });
                     }
                 });
             </script>
+
+            <div class="row">
+                <div class="column">
+                    <h2 class="datatitles">Table 1</h2>
+                    <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
+                </div>
+                <div class="column">
+                    <h2 class="datatitles">Table 2</h2>
+                    <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
+                </div>
+                <div class="column">
+                    <h2 class="datatitles">Table 3</h2>
+                    <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
+                </div>
+            </div>
+
             <div>
-                <h4>Table 1</h4>
-                <h4>Table 2</h4>
-                <h4>Table 3</h4>
+                <h4 class="ku">Rock Chalk</h4>
+                <img class="jayhawk" width="120" height="100" src="{{ url_for('static', filename='images/jayhawk.png') }}" alt="Jayhawk">
             </div>
         </div>
-    </Body>
+    </body>
 </html>
