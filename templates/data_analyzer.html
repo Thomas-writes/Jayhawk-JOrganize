@@ -10,12 +10,12 @@
             <h1>
                 Data Analyzer
             </h1>
-            <label>Website:</label>
+            <label for="URL">Website:</label>
             <input placeholder="www.website.com" type="text" id="URL" name="URL">
-            <button type="button">Submit</button>
+            <button id="submitButton" type="button">Submit</button>
             <script>
                 document.getElementById('submitButton').addEventListener('click', () => {
-                    const inputField = document.getElementById('inputValue');
+                    const inputField = document.getElementById('URL');
                     const URL = inputField.value;
                     if (URL.trim() === "") {
                         // Send the value to Flask
@@ -30,7 +30,7 @@
                         })
                         .then(response => {
                             if (response.ok) {
-                                // Clear the input field after successful submission
+                                // Clear the input field after successful submission using JSON
                                 inputField.value = '';
                                 alert("Value submitted successfully!");
                             } else {
@@ -39,6 +39,7 @@
                         });
                     }
                 });
+            </script>
             <div>
                 <h4>Table 1</h4>
                 <h4>Table 2</h4>
