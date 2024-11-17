@@ -1,35 +1,91 @@
-.column {
+.column1 {
+    background-color: #FDF0D5;
+    margin: 0; 
+    padding-bottom: 30px;
     float: left;
     width: 33.33%;
-    padding: 10px;
     box-sizing: border-box;
 }
-  
+
+.column2 {
+    background-color: #FDF0D5;
+    margin: 0; 
+    padding-bottom: 30px;
+    float: left;
+    width: 33.33%;
+    box-sizing: border-box;
+}
+
+.column3 {
+    background-color: #FDF0D5;
+    margin: 0; 
+    padding-bottom: 30px;
+    float: left;
+    width: 33.33%;
+    box-sizing: border-box;
+}
+
+.head{
+    margin: 0; 
+    padding: 0;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.body{
+    margin: 0; 
+    padding: 0;
+    padding-top: 0;
+    margin-top: 0;
+}
+
 .row:after {
+    margin: 0; 
+    padding: 0;
     content: "";
     display: table;
     clear: both;
 }
 
 .datatitles {
+    margin: 0; 
+    padding: 0;
     text-align: center;
     justify-content: center;
 }
 
-
 .title{
+    margin: 0; 
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    justify-content: center;
+    color: white;
+}
+
+.topbanner{
+    margin: 0; 
+    padding: 0;
+    background-color: #e90005;
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
     justify-content: center;
 }
 
 .data{
+    margin: 0; 
+    padding: 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 .ku{
+    padding-top: 30px;
+    margin: 0; 
     text-align: center;
 }
 
@@ -41,15 +97,17 @@
 
 .button{
     max-width: fit-content;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     text-align: center;
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
     border-radius: 12px;
-    display: block;
 }
 
+.leftpadding{
+    padding-left: 10px;
+}
 
 
 .website{
@@ -57,10 +115,20 @@
     font-size: 25px;
     text-align: center;
     justify-content: center;
+    color: white
+}
+
+.color{
+    max-width: 100vw;
+    background-color: #0050bb;
 }
 
 .input{
-    height: 5%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -71,7 +139,7 @@
 .box{
     font-size: 25;
     background-color: lightgray;
-    border: 2px solid black;
+    border: 2px solid white;
     box-sizing: border-box;
     height: 30px;
     border-radius: 6px;

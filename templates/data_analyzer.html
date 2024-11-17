@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head class='head'>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>Data Analyzer</title>
     </head>
-    <body style="background-color:powderblue;">
+    <body class="body" style="background-color:#ffc929;">
         <div>
-            <h1 class="title" style="font-size: 40px">Data Analyzer</h1>
+            <div class="topbanner">
+                <h1 class="title" style="font-size: 40px">Data Analyzer</h1>
+            </div>
+            <div class="color">
             <div class="input">
                 <label class = "website" for="URL">Website:</label>
+                <div class="leftpadding"></div>
                 <input class="box" placeholder="Type Here..." type="text" id="URL" name="URL">
-                <div class="padding"></div>
+                <div class="leftpadding"></div>
                 <button class="button" height=100% width=2*height id="submitButton" type="button">Submit</button>
+            </div>
             </div>
             <script>
                 document.getElementById('submitButton').addEventListener('click', () => {
@@ -40,16 +45,16 @@
             </script>
 
             <div class="row">
-                <div class="column">
-                    <h2 class="datatitles">Table 1</h2>
+                <div class="column1">
+                    <h2 class="datatitles" style="font-size: 35px">Table 1</h2>
                     <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
                 </div>
-                <div class="column">
-                    <h2 class="datatitles">Table 2</h2>
+                <div class="column2">
+                    <h2 class="datatitles" style="font-size: 35px">Table 2</h2>
                     <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
                 </div>
-                <div class="column">
-                    <h2 class="datatitles">Table 3</h2>
+                <div class="column3">
+                    <h2 class="datatitles" style="font-size: 35px">Table 3</h2>
                     <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
                 </div>
             </div>
