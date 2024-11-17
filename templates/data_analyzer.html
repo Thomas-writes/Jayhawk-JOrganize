@@ -18,16 +18,14 @@
                 <button class="button" height=100% width=2*height id="submitButton" type="button">Submit</button>
             </div>
             </div>
-            <script>
+            <<script>
                 document.getElementById('submitButton').addEventListener('click', () => {
                     const inputField = document.getElementById('URL');
-                    const URL = inputField.value.trim(); // Get and trim input value
-
+                    const URL = inputField.value.trim(); 
                     if (URL === "") {
-                        alert("No value has been entered");
+                        alert("No value has been entered.");
                         return;
                     }
-
                     fetch('/store', {
                         method: 'POST',
                         headers: {
@@ -35,35 +33,37 @@
                         },
                         body: JSON.stringify({ value: URL }),
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.graph_1 && data.graph_2 && data.graph_3) {
-                            document.querySelector('.column1 img').src = data.graph_1;
-                            document.querySelector('.column2 img').src = data.graph_2;
-                            document.querySelector('.column3 img').src = data.graph_3;
-                            inputField.value = ''; // Clear input field
-                        } else {
-                            alert("Error generating graphs");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                        alert("An error occurred while processing the request.");
-                    });
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.graph_1 && data.graph_2 && data.graph_3) {
+                                const timestamp = new Date().getTime(); // Cache-busting timestamp
+                                document.querySelector('.column1 img').src = data.graph_1 + '?t=' + timestamp;
+                                document.querySelector('.column2 img').src = data.graph_2 + '?t=' + timestamp;
+                                document.querySelector('.column3 img').src = data.graph_3 + '?t=' + timestamp;
+            
+                                inputField.value = ''; 
+                            } else {
+                                alert("Error generating graphs. Please try again.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("An error occurred while processing the request. Please check your URL or try again later.");
+                        });
                 });
             </script>
 
             <div class="row">
                 <div class="column1">
-                    <h2 class="datatitles" style="font-size: 35px">Table 1</h2>
+                    <h2 class="datatitles" style="font-size: 35px">Line Graph</h2>
                     <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
                 </div>
                 <div class="column2">
-                    <h2 class="datatitles" style="font-size: 35px">Table 2</h2>
+                    <h2 class="datatitles" style="font-size: 35px">Pie Chart</h2>
                     <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
                 </div>
                 <div class="column3">
-                    <h2 class="datatitles" style="font-size: 35px">Table 3</h2>
+                    <h2 class="datatitles" style="font-size: 35px">Scatter Plot</h2>
                     <img class="data" width=90% height=width src="{{ url_for('static', filename='images/placeholder.jpg') }}">
                 </div>
             </div>

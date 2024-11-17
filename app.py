@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 import subprocess
 import os
@@ -7,6 +7,7 @@ import matplotlib
 matplotlib.use('Agg')
 
 app = Flask(__name__)
+app.secret_key = 'key'
 CORS(app)
 
 @app.route("/")
@@ -15,11 +16,10 @@ def main():
 
 @app.route('/store', methods=['POST'])
 def store():
-    global stored_url
     data = request.get_json()
     URL = data.get('value')
     print(URL)
-    stored_url = URL
+    session['stored_url'] = URL
     subprocess.run(['python3', 'scrappy/table_spider.py', URL], capture_output=True, text=True)
     
     graph_output_files = create_graphs()
@@ -32,7 +32,8 @@ def store():
 
 @app.route('/get_url')
 def get_url():
-    return jsonify(url=stored_url)
+    url = session.get('stored_url', None)
+    return jsonify(url=url)
 
 if __name__ == '__main__':
     app.run(debug=True)
