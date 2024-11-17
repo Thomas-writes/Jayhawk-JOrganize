@@ -52,6 +52,7 @@
     padding: 0;
     text-align: center;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .title{
@@ -103,6 +104,7 @@
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
     border-radius: 12px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .leftpadding{
@@ -115,7 +117,8 @@
     font-size: 25px;
     text-align: center;
     justify-content: center;
-    color: white
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .color{
