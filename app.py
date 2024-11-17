@@ -19,6 +19,8 @@ def store():
     stored_url = URL
     result = subprocess.run(['python3', 'scrappy/table_spider.py', URL], capture_output=True, text=True)
     
+    if result.returncode == 0:
+        print("scrappy ran code")
     image1_path= "graph_1.png"
     image2_path= "graph_2.png"
     image3_path= "graph_3.png"

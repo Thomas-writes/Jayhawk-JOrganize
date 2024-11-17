@@ -1,7 +1,5 @@
 #put stuff to get file name here
 from pathlib import Path
-import numpy
-import pandas
 import scrapy 
 import csv 
 import sys
@@ -13,6 +11,7 @@ class TableSpider(scrapy.Spider):
     def start_requests(self):
         user_url = sys.argv[1]
         urls=[user_url]
+        
 
         for url in urls:
             yield scrapy.Request(url=url, callback = self.parse)
@@ -28,7 +27,7 @@ class TableSpider(scrapy.Spider):
 
         for item in response.css("tr"):
             matrix.append(item.css("td::text").getall())
-        with open('matrix.csv', "w", newline='') as file:
+        with open('scrappy/matrix.csv', "w", newline='') as file:
             writer = csv.writer(file)
             writer.writerows(matrix)
 
