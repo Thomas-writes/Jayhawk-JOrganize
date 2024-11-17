@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import subprocess
-
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -15,12 +15,15 @@ def store():
     global stored_url
     data = request.get_json()
     URL = data.get('value')
-    URL = '"' +  URL + '"'
     print(URL)
     stored_url = URL
-    result = subprocess.run(['python3', 'test2.py', URL], capture_output=True, text=True)
-    print(result.stdout.strip('\n'))
-    return jsonify(message=stored_url)
+    result = subprocess.run(['python3', 'table_spider.py', URL], capture_output=True, text=True)
+    
+    image1_path= "graph_1.png"
+    image2_path= "graph_2.png"
+    image3_path= "graph_3.png"
+    
+    return jsonify(image_path=image_path)
 
 @app.route('/get_url')
 def get_url():
