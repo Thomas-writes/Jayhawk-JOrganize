@@ -1,0 +1,21 @@
+version: 1.0
+backend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Nothing to install"
+    build:
+      commands:
+        - echo "Nothing to build"
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - pip install -r requirements.txt
+    build:
+      commands:
+        - python app.py
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'

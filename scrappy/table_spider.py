@@ -26,7 +26,15 @@ class TableSpider(scrapy.Spider):
         matrix.append(header_text)
 
         for item in response.css("tr"):
-            matrix.append(item.css("td::text").getall())
+            row_data = []
+            for td in item.css("td"):
+                text = td.css("::text").get()  # Get the text content of the td
+                if text:  # Only append if there's text
+                    row_data.append(text.strip())  # Strip to remove extra spaces/newlines
+                else:
+                    row_data.append(None)  # Append None or any default value
+            matrix.append(row_data)
+            
         with open('scrappy/matrix.csv', "w", newline='') as file:
             writer = csv.writer(file)
             writer.writerows(matrix)
