@@ -17,7 +17,7 @@ def store():
     URL = data.get('value')
     print(URL)
     stored_url = URL
-    result = subprocess.run(['python3', 'table_spider.py', URL], capture_output=True, text=True)
+    result = subprocess.run(['python3', 'scrappy/table_spider.py', URL], capture_output=True, text=True)
     
     image1_path= "graph_1.png"
     image2_path= "graph_2.png"
