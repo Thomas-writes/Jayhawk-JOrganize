@@ -21,26 +21,35 @@
             <script>
                 document.getElementById('submitButton').addEventListener('click', () => {
                     const inputField = document.getElementById('URL');
-                    const URL = inputField.value;
-                    if (URL.trim() === "") {
+                    const URL = inputField.value.trim(); // Get and trim input value
+
+                    if (URL === "") {
                         alert("No value has been entered");
-                    } else {
-                        fetch('/store', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ value: URL }),
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                inputField.value = ''; 
-                                // Clear the input after submission
-                            } else {
-                                alert("Error submitting value");
-                            }
-                        });
+                        return;
                     }
+
+                    fetch('/store', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ value: URL }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.graph_1 && data.graph_2 && data.graph_3) {
+                            document.querySelector('.column1 img').src = data.graph_1;
+                            document.querySelector('.column2 img').src = data.graph_2;
+                            document.querySelector('.column3 img').src = data.graph_3;
+                            inputField.value = ''; // Clear input field
+                        } else {
+                            alert("Error generating graphs");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while processing the request.");
+                    });
                 });
             </script>
 

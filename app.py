@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import subprocess
 import os
+from graph_maker import create_graphs
+import matplotlib
+matplotlib.use('Agg')
 
 app = Flask(__name__)
 CORS(app)
@@ -17,15 +20,15 @@ def store():
     URL = data.get('value')
     print(URL)
     stored_url = URL
-    result = subprocess.run(['python3', 'scrappy/table_spider.py', URL], capture_output=True, text=True)
+    subprocess.run(['python3', 'scrappy/table_spider.py', URL], capture_output=True, text=True)
     
-    if result.returncode == 0:
-        print("scrappy ran code")
-    image1_path= "graph_1.png"
-    image2_path= "graph_2.png"
-    image3_path= "graph_3.png"
+    graph_output_files = create_graphs()
     
-    return jsonify(image_path=image1_path)
+    return jsonify({
+            "graph_1": graph_output_files[0],
+            "graph_2": graph_output_files[1],
+            "graph_3": graph_output_files[2]
+        })
 
 @app.route('/get_url')
 def get_url():
