@@ -23,7 +23,7 @@ def store():
     image2_path= "graph_2.png"
     image3_path= "graph_3.png"
     
-    return jsonify(image_path=image_path)
+    return jsonify(image_path=image1_path)
 
 @app.route('/get_url')
 def get_url():
