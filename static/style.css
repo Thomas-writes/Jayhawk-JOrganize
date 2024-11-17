@@ -40,22 +40,43 @@
 }
 
 .button{
+    max-width: fit-content;
     background-color: black;
     color: white;
     text-align: center;
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
-    display: inline-block;
     border-radius: 12px;
+    display: block;
 }
 
+
+
 .website{
+    font-weight: bold;
+    font-size: 25px;
     text-align: center;
     justify-content: center;
 }
 
 .input{
+    height: 5%;
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.box{
+    font-size: 25;
+    background-color: lightgray;
+    border: 2px solid black;
+    box-sizing: border-box;
+    height: 30px;
+    border-radius: 6px;
+}
+
+.padding{
+    height: 5px
 }
